@@ -28,9 +28,11 @@ public class Matrix
 	
 	/**
 	 * Gives the coefficient at row i, column j of the matrix.
+	 * The coefficient has to exist in the matrix, otherwise an exception
+	 * will be raised.
 	 * @param i The row index
 	 * @param j The column index
-	 * @return The coefficient at indexes (i, j)
+	 * @return The coefficient at indices (i, j)
 	 */
 	
 	public int getCoeff(int i, int j)
@@ -40,10 +42,20 @@ public class Matrix
 		return tempMat.get(j-1);
 	}
 	
+	/**
+	 * Gives the number of rows of the matrix.
+	 * @return The number of rows
+	 */
+	
 	public int getNbRows()
 	{
 		return mat.size();
 	}
+	
+	/**
+	 * Gives the number of columns of the matrix.
+	 * @return The number of columns
+	 */
 	
 	public int getNbColumns()
 	{
@@ -66,16 +78,61 @@ public class Matrix
 	
 	//------------------------------------------------------------------ Setters
 	
+	/**
+	 * This method sets the coefficient of position (i, j) in the matrix.
+	 * If the size of the matrix dosen't fit with the specified position,
+	 * it will be automatically increased, and the missing coefficients will be
+	 * set to 0.
+	 * 
+	 * @param i The row index
+	 * @param j The column index
+	 * @param value The value at which the coefficient will be set
+	 */
+	
 	public void setCoeff(int i, int j, int value)
 	{
-		if (mat.size() < i)
+		int k = mat.size();
+		
+		while (mat.size() < i)
 		{
-			mat.add(i-1, new ArrayList<Integer>());
+			ArrayList<Integer> row = new ArrayList<Integer>();
+			
+			mat.add(k, row);
+			
+			while (row.size() < Math.max(j, getNbColumns()))
+			{
+				row.add(0);
+			}
 		}
 		
 		ArrayList<Integer> tempMat = mat.get(i-1);
 		
+		k = tempMat.size();
+		
+		while (tempMat.size() < j)
+		{
+			tempMat.add(k, 0);
+		}
+		
 		tempMat.set(j-1, value);
 	}
-
+	
+	//------------------------------------------------------------ Other methods
+	
+	public String toString()
+	{
+		String s = "";
+		
+		for (ArrayList<Integer> row : mat)
+		{
+			for (int coeff : row)
+			{
+				s += coeff + " ";
+			}
+			
+			s += "\n";
+		}
+		
+		return s;
+	}
 }

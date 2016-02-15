@@ -1,16 +1,26 @@
+import java.util.ArrayList;
 
 public class Main
 {
 
 	public static void main(String[] args)
 	{
-		Matrix mat = new Matrix();
+		Graph g = new Graph();
 		
-		System.out.println(mat.getNbRows());
+		g.addNode(new UndirectedNode());
+		g.addNode(new UndirectedNode());
 		
-		mat.setCoeff(1,  1, 2);
-//		
-//		System.out.println(mat.getCoeff(1, 1));
+		ArrayList<Node> nodes = g.getNodes();
+		
+		g.addArc(nodes.get(0), nodes.get(1), false);
+		
+		g.displayAdjacencyMatrix();
+		
+		g.addNode(new UndirectedNode());
+		
+		g.addArc(nodes.get(0), nodes.get(2), true);
+		
+		g.displayAdjacencyMatrix();
 	}
 
 }

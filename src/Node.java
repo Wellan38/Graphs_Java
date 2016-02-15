@@ -4,7 +4,7 @@
  *
  */
 
-public class Node {
+public abstract class Node {
 	
 //------------------------------------------------------------------- Attributes
 	
@@ -24,5 +24,7 @@ public class Node {
 	{
 		return color;
 	}
+	
+	public abstract void addSuccessor(Node n);
 
 }

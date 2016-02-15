@@ -79,5 +79,10 @@ public class UndirectedNode extends Node
 	{
 		return adjacentNodes.remove(n);
 	}
+	
+	public void addSuccessor(Node n)
+	{
+		adjacentNodes.add(n);
+	}
 
 }
